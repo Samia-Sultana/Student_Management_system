@@ -16,8 +16,9 @@ class BlogController extends Controller
      */
     public function index()
     {
+        $blogs = Blog::all();
         $catagories = Blogcatagory::all();
-        return view('blog', compact('catagories'));
+        return view('blog', compact('blogs','catagories'));
     }
 
     /**
@@ -38,14 +39,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $title = $request->input('title');
         $description = $request->input('blog');
         $catagory = $request->input('catagory');
         $blog = new Blog();
+        $blog['title'] = $title;
         $blog['description'] = $description;
         $blog['blogcatagory_id'] = $catagory;
         $blog->save();
         $catagories = Blogcatagory::all();
-        return view('blog',compact('catagories'));
+        $blogs = Blog::all();
+        return view('blog',compact('blogs','catagories'));
     }
 
     /**
@@ -94,5 +98,10 @@ class BlogController extends Controller
         DB::table('blogs')->where('id',$id)->delete();
         $blogs = Blog::all();
         return view('blog',compact('blogs'));
+    }
+    public function viewBlog($id){
+        $blog = Blog::where('blogcatagory_id', $id)->get();
+        
+        return view('blogView', compact('blog'));
     }
 }

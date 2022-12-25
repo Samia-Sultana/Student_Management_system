@@ -21,26 +21,13 @@
      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
-@include('admin.adminNavbar')
+@include('teacher.teacherNavbar')
 
-    @yield('adminDashboard')
-    @yield('onlineApplications')
-    @yield('onlineApplicationsDetails')
-    @yield('adminLogo');
-    @yield('adminSlider')
-    @yield('adminSmedia')
-    @yield('navbar')
-    @yield('blogCatagory')
-    @yield('blog')
-    @yield('photos')
-    @yield('notice')
-    @yield('noticeInput')
-    @yield('class')
-    @yield('schedule')
+    
     
 
     
-@include('admin.adminFooter')
+@include('teacher.teacherFooter')
 
 
     <!-- JavaScript -->

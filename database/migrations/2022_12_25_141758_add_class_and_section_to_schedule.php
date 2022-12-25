@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classinfos', function (Blueprint $table) {
-            $table->id();
-            $table->string('class');
-            $table->string('section');
-            $table->string('teacher_id');
-            $table->timestamps();
+        Schema::table('scedules', function (Blueprint $table) {
+            $table->string('class')->nullable();
+            $table->string('section')->nullable();
         });
     }
 
@@ -29,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classinfos');
+        Schema::table('scedules', function (Blueprint $table) {
+            $table->dropColumn('class');
+            $table->dropColumn('section');
+        });
     }
 };

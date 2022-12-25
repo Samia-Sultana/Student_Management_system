@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classinfo;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class ClassinfoController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +14,7 @@ class ClassinfoController extends Controller
      */
     public function index()
     {
-        $classes = Classinfo::all();
-       
-        return view('class', compact('classes'));
-    }
-    public function addClassinfo(Request $request){
-        $input = $request->all();
-        $class = new Classinfo();
-        $class['class'] = $input['class'];
-        $class['section'] = $input['section'];
-        $class->save();
-        $classes = Classinfo::all();
-       
-        return view('class', compact('classes'));
+        //
     }
 
     /**
@@ -54,10 +41,10 @@ class ClassinfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Classinfo $classinfo)
+    public function show(Teacher $teacher)
     {
         //
     }
@@ -65,10 +52,10 @@ class ClassinfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classinfo $classinfo)
+    public function edit(Teacher $teacher)
     {
         //
     }
@@ -77,10 +64,10 @@ class ClassinfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classinfo $classinfo)
+    public function update(Request $request, Teacher $teacher)
     {
         //
     }
@@ -88,10 +75,10 @@ class ClassinfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classinfo $classinfo)
+    public function destroy(Teacher $teacher)
     {
         //
     }

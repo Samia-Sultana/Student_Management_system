@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classinfos', function (Blueprint $table) {
+        Schema::create('scedules', function (Blueprint $table) {
             $table->id();
-            $table->string('class');
-            $table->string('section');
-            $table->string('teacher_id');
+            $table->string('classinfo_id');
+            $table->string('start_time');
+            $table->string('end_time');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classinfos');
+        Schema::dropIfExists('scedules');
     }
 };

@@ -26,6 +26,14 @@
                                     @csrf
 
                                     <div class="row g-3 align-center">
+                                    <div class="col-lg-7">
+                                            <div class="form-group">
+                                                <div class="form-control-wrap">
+                                                    <input class="form-control" type="text" id="title" name="title" value="" placeholder="Title" />
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="col-lg-7">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
@@ -36,20 +44,20 @@
 
                                     </div>
                                     <div class="col-lg-7">
-                                            <div class="form-group">
-                                                <div class="form-control-wrap">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
 
-                                                    <label for="catagory">Choose a catagory:</label>
-                                                    <select name="catagory" id="catagory">
-                                                        @foreach($catagories as $catagory )
-                                                        @if($catagory->status == "enable")
-                                                        <option value="{{$catagory->id}}">{{$catagory->catagoryName}}</option>
-                                                        @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                <label for="catagory">Choose a catagory:</label>
+                                                <select name="catagory" id="catagory">
+                                                    @foreach($catagories as $catagory )
+                                                    @if($catagory->status == "enable")
+                                                    <option value="{{$catagory->id}}">{{$catagory->catagoryName}}</option>
+                                                    @endif
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
+                                    </div>
 
 
                                     <div class="row g-3">
@@ -67,7 +75,7 @@
                         <div class="card card-bordered">
                             <div class="card-inner">
                                 <div class="card-head">
-                                    <h5 class="card-title">All Catagory</h5>
+                                    <h5 class="card-title">All Blogs</h5>
                                 </div>
                                 <div>
                                     <table class="table table-bordered">
@@ -76,31 +84,28 @@
                                                 <!-- <th class="pro-thumbnail">Thumbnail</th>
                                     <th class="pro-title">Product</th> -->
                                                 <th class="pro-id">Id</th>
-                                                <th class="pro-name">Name</th>
+                                                <th class="pro-name">Title</th>
+                                                <th class="pro-name">Catagory</th>
                                                 <th class="pro-remove">Delete</th>
-                                                <th class="pro-status">status</th>
+                                                <th class="pro-status">Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if($catagories)
-                                            @foreach($catagories as $catagory)
+                                            @if($blogs)
+                                            @foreach($blogs as $blog)
                                             <tr>
-
-                                                <td>{{$catagory->id}}</td>
-                                                <td>{{$catagory->catagoryName}}</td>
+                                                <td>{{$blog->id}}</td>
+                                                <td>{{$blog->title}}</td>
+                                                <td>{{$blog->blogcatagory_id}}</td>
                                                 <td>
                                                     <form action="{{route('deleteCatagory')}}" method="post">
                                                         @csrf
-                                                        <input type="hidden" value="{{$catagory->id}}" name="catagory_id" id="catagory_id">
+                                                        <input type="hidden" value="{{$blog->id}}" name="blog_id" id="blog_id">
                                                         <button type="submit" class="btn btn-danger btn-delete-catagory">Delete</button>
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <select name="status" id="status" class="btn btn-success status">
-                                                        <option data-display="{{$catagory->status}}">{{$catagory->status}}</option>
-                                                        <option value="enable">Enable</option>
-                                                        <option value="disable">Disable</option>
-                                                    </select>
+                                                    update
                                                 </td>
                                             </tr>
 

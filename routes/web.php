@@ -10,9 +10,11 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\SocialmediaController;
 use App\Http\Controllers\BlogcatagoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ClassinfoController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SceduleController;
 use App\Http\Controllers\VideoController;
 
 // General Pages
@@ -62,6 +64,10 @@ Route::post('/online_admission', [OnlineadmissionController::class, 'create'])->
 Route::get('/notices',[NoticeController::class,'allNotice'])->middleware(['auth:admin', 'verified'])->name('allNotice');
 
 Route::get('/notice/{id}/view',[NoticeController::class,'viewNotice'])->middleware(['auth:admin', 'verified'])->name('viewNotice');
+// blogs
+Route::get('academic/blog/{id}',[BlogController::class,'viewBlog'])->middleware(['auth:admin', 'verified'])->name('viewBlog');
+
+
 
 
 // news_events
@@ -142,6 +148,12 @@ Route::get('/online_applications/{id}', [OnlineadmissionController::class, 'appl
     Route::get('/notice',[NoticeController::class,'index'])->middleware(['auth:admin', 'verified'])->name('notice');
     Route::post('/notice/create',[NoticeController::class,'store'])->middleware(['auth:admin', 'verified'])->name('createNotice');
     Route::post('/notice/delete',[NoticeController::class,'deleteNotice'])->middleware(['auth:admin', 'verified'])->name('deleteNotice');
+    Route::get('/class/info',[ClassinfoController::class,'index'])->middleware(['auth:admin', 'verified'])->name('classInfo');
+    Route::post('/class/info',[ClassinfoController::class,'addClassinfo'])->middleware(['auth:admin', 'verified'])->name('addClassinfo');
+    Route::get('/scedule',[SceduleController::class,'index'])->middleware(['auth:admin', 'verified'])->name('scedule');
+    Route::post('/scedule',[SceduleController::class,'store'])->middleware(['auth:admin', 'verified'])->name('createScedule');
+
+    //Route::post('/class/info',[ClassinfoController::class,'addClassinfo'])->middleware(['auth:admin', 'verified'])->name('addClassinfo');
 
 
 

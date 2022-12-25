@@ -53,6 +53,7 @@
 @yield('notice')
 @yield('noticeView')
 @yield('gallery')
+@yield('blogView')
 
 
 

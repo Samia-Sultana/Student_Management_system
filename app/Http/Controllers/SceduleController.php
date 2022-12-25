@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classinfo;
+use App\Models\Scedule;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class ClassinfoController extends Controller
+class SceduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +16,10 @@ class ClassinfoController extends Controller
      */
     public function index()
     {
+        $scedules = Scedule::all();
         $classes = Classinfo::all();
-       
-        return view('class', compact('classes'));
-    }
-    public function addClassinfo(Request $request){
-        $input = $request->all();
-        $class = new Classinfo();
-        $class['class'] = $input['class'];
-        $class['section'] = $input['section'];
-        $class->save();
-        $classes = Classinfo::all();
-       
-        return view('class', compact('classes'));
+        $teachers = Teacher::all();
+        return view('scedule', compact('classes','teachers','scedules'));
     }
 
     /**
@@ -48,16 +40,30 @@ class ClassinfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $scedule = new Scedule();
+        $scedule['class'] = $input['class'];
+        $scedule['section'] = $input['section'];
+        $scedule['day'] = $input['day'];
+        $scedule['subject'] = $input['subject'];
+        $scedule['teacher_id'] = $input['teacher'];
+        $scedule['start_time'] = $input['start'];
+        $scedule['end_time'] = $input['end'];
+        $scedule->save();
+        $scedules = Scedule::all();
+        $classes = Classinfo::all();
+        $teachers = Teacher::all();
+        return view('scedule', compact('classes','teachers','scedules'));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Scedule  $scedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Classinfo $classinfo)
+    public function show(Scedule $scedule)
     {
         //
     }
@@ -65,10 +71,10 @@ class ClassinfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Scedule  $scedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classinfo $classinfo)
+    public function edit(Scedule $scedule)
     {
         //
     }
@@ -77,10 +83,10 @@ class ClassinfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Scedule  $scedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classinfo $classinfo)
+    public function update(Request $request, Scedule $scedule)
     {
         //
     }
@@ -88,10 +94,10 @@ class ClassinfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classinfo  $classinfo
+     * @param  \App\Models\Scedule  $scedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classinfo $classinfo)
+    public function destroy(Scedule $scedule)
     {
         //
     }
