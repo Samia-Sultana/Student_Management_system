@@ -27,6 +27,15 @@
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
+            <!-- User id -->
+            <div class="mt-4">
+                <x-input-label for="userId" :value="__('Student ID')" />
+
+                <x-text-input id="userId" class="block mt-1 w-full" type="text" name="userId" required />
+
+                
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />

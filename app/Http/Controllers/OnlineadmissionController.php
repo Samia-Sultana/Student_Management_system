@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Onlineadmission;
+use App\Models\User;
 use App\Models\formlabel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 use Image;
 
@@ -162,6 +165,63 @@ class OnlineadmissionController extends Controller
         $adApplicationDetails = Onlineadmission::find($id);
         return view('admin.adminSection.online_applications_details',compact('adApplicationDetails'));
     }
+
+    // Application approve view
+
+    public function applicationApproveView($id)
+    { 
+        $studentInfo = Onlineadmission::find($id);
+
+        if($studentInfo->status == 1){
+            // change status
+            Onlineadmission::findOrFail($id)->update([
+                'status' => 0,
+            ]);
+
+            // delete user
+            $que = "stu".$id;
+            User::where("userId","=",$que)->delete();
+
+            return  redirect()->route('allApplications');
+        }
+
+        return view('admin.adminSection.online_applications_approve_input',compact('studentInfo'));
+    }
+
+    // Application approve form submit
+
+    public function applicationApproveInput(Request $request)
+    { 
+        $id = $request->id;
+        $name = $request->studentname_in_english;
+
+        // user id generate
+        $newUserId = "stu".$id;
+
+        $newPassword = "password";
+
+        Onlineadmission::findOrFail($id)->update([
+
+            'admitted_class' => $request->admitted_class,
+            'admitted_section' => $request->admitted_section,
+            'roll' => $request->roll,
+            'status' => 1,
+
+        ]);
+
+        $user = User::create([
+
+            'name' => $name,
+            'userId' => $newUserId,
+            'password' => Hash::make($newPassword),
+
+        ]);
+
+        event(new Registered($user));
+        
+        return  redirect()->route('allApplications');
+    }
+
 
 
     /**

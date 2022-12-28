@@ -59,6 +59,7 @@ class Onlineadmission extends Model
 
         'transport',
         'photo',
+        'status',
 
         'field1',
         'field2',

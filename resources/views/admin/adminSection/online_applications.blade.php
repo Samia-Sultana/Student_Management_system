@@ -78,17 +78,57 @@ tr:nth-child(even){background-color: #f2f2f2}
             </a>
         </td>
 
-        <!-- Delete Button -->
+        <!-- Approve Button -->
+
+        @if($info->status==1)
+
         <td>
-            <a href="" id="delete">
-                <button type="button" class="btn btn-danger">Delete</button>
+            <a href="{{url('/admin/online_applications_approve')}}/{{$info->id}}">
+                <button type="button" class="btn btn-success">Approved</button>
             </a>
         </td>
+
+        @elseif($info->status==0)
+
+        <td>
+            <a href="{{url('/admin/online_applications_approve')}}/{{$info->id}}">
+                <button type="button" class="btn btn-danger">Unapproved</button>
+            </a>
+        </td>
+
+        @endif
+        
+        <!-- <td>
+            <select name="status" id="status" class="btn btn-success status">
+
+                
+
+                <option data-display="">
+                  <a href="{{url('/admin/online_applications')}}/{{$info->id}}" >
+                      <button type="button" class="btn btn-primary">Details</button>
+                  </a>
+                </option>
+
+                <option data-display="">
+                  <a href="" >
+                    <button type="button" class="btn btn-primary">Approve</button>
+                  </a>
+                </option>
+                
+            </select>
+        </td> -->
 
     </tr>
 @endforeach
 
 </table>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+
 
 <!-- Pagination -->
 <br>
