@@ -133,8 +133,12 @@
                        @endif
                        @endif
                        @endforeach
+                       <li>
+                   <a href="{{ route('career') }}">Career</a>
+                   </li>
 
                    </ul>
+                   
                </div>
                <!-- /.navbar-collapse -->
            </div>

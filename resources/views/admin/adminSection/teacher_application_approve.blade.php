@@ -1,5 +1,5 @@
 @extends('masterAdmin')
-@section('onlineApplications')
+@section('teacherApplicationApprove')
 
                 <!-- content @s -->
                 <div class="nk-content ">
@@ -12,10 +12,7 @@
                                     <div class="nk-block nk-block-lg">
                                         <div class="nk-block-head">
                                             <div class="nk-block-head-content">
-                                                <h4 class="title nk-block-title">Class, section, roll  input Section</h4>
-                                                <div class="nk-block-des">
-                                                    <p>You can make style out your setting related form as per below example.</p>
-                                                </div>
+                                                
                                             </div>
                                         </div>
 
@@ -23,25 +20,25 @@
                                             <div class="card-inner">
                                                
 
-                                                <form class="gy-3" method="POST" action="{{ route('admission_form_approve', $studentInfo->id) }}" >
+                                                <form class="gy-3" method="POST" action="{{ route('teacher_application_approve', $teacherInfo->id) }}" >
                                                 @csrf
 
-                                                <input type="hidden" name="id" value="{{ $studentInfo->id }}">
-                                                <input type="hidden" name="studentname_in_english" value="{{ $studentInfo->studentname_in_english }}">
-                                                <input type="hidden" name="status" value="{{ $studentInfo->status }}">
+                                                <input type="hidden" name="id" value="{{ $teacherInfo->id }}">
+                                                <input type="hidden" name="name" value="{{ $teacherInfo->name }}">
+                                                <input type="hidden" name="status" value="{{ $teacherInfo->status }}">
                                                 
 
                                                 <div class="row g-3 align-center">
                                                         <div class="col-lg-5">
                                                             <div class="form-group">
-                                                                <label class="form-label" for="site-name">Class</label>
+                                                                <label class="form-label" for="site-name">Designation</label>
                                                                 <span class="form-note">Specify the class you want to.</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7">
                                                             <div class="form-group">
                                                                 <div class="form-control-wrap">
-                                                                    <input class="form-control" type="text" id="admitted_class" name="admitted_class" value="{{ $studentInfo->admitted_class }}" placeholder="{{ $studentInfo->admitted_class }}" required>
+                                                                    <input class="form-control" type="text" id="designation" name="designation" value="{{ $teacherInfo->designation }}" placeholder="{{ $teacherInfo->designation }}" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -50,31 +47,30 @@
                                                 <div class="row g-3 align-center">
                                                         <div class="col-lg-5">
                                                             <div class="form-group">
-                                                                <label class="form-label" for="site-name">Section</label>
+                                                                <label class="form-label" for="site-name">Start Date</label>
                                                                 <span class="form-note">Specify the class you want to.</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7">
                                                             <div class="form-group">
                                                                 <div class="form-control-wrap">
-                                                                    <input class="form-control" type="text" id="admitted_section" name="admitted_section" value="{{ $studentInfo->admitted_section }}" placeholder="{{ $studentInfo->admitted_section }}" required>
+                                                                    <input class="form-control" type="date" id="start_date" name="start_date" value="{{ $teacherInfo->start_date }}" placeholder="{{ $teacherInfo->start_date }}" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                        
                                                 </div>
-                                               
                                                 <div class="row g-3 align-center">
                                                         <div class="col-lg-5">
                                                             <div class="form-group">
-                                                                <label class="form-label" for="site-name">Roll</label>
+                                                                <label class="form-label" for="site-name">Teacher email</label>
                                                                 <span class="form-note">Specify the class you want to.</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7">
                                                             <div class="form-group">
                                                                 <div class="form-control-wrap">
-                                                                    <input class="form-control" type="text" id="roll" name="roll" value="{{ $studentInfo->roll }}" placeholder="{{ $studentInfo->admitted_section }}" required>
+                                                                    <input class="form-control" type="text" id="email" name="email" value="{{ $teacherInfo->email }}" placeholder="{{ $teacherInfo->email }}" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -84,14 +80,14 @@
                                                 <div class="row g-3 align-center">
                                                         <div class="col-lg-5">
                                                             <div class="form-group">
-                                                                <label class="form-label" for="site-name">Tution Fee</label>
+                                                                <label class="form-label" for="site-name"> Salary</label>
                                                                 <span class="form-note">Specify the class you want to.</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7">
                                                             <div class="form-group">
                                                                 <div class="form-control-wrap">
-                                                                    <input class="form-control" type="text" id="tution_fee" name="tution_fee" value="{{ $studentInfo->tution_fee }}" placeholder="{{ $studentInfo->tution_fee }}" required>
+                                                                    <input class="form-control" type="text" id="salary" name="salary" value="{{ $teacherInfo->salary }}" placeholder="{{ $teacherInfo->salary }}" required>
                                                                 </div>
                                                             </div>
                                                         </div>

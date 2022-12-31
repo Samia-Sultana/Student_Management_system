@@ -205,6 +205,7 @@ class OnlineadmissionController extends Controller
             'admitted_class' => $request->admitted_class,
             'admitted_section' => $request->admitted_section,
             'roll' => $request->roll,
+            'tution_fee' => $request->tution_fee,
             'status' => 1,
 
         ]);

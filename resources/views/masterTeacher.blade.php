@@ -23,7 +23,7 @@
 
 @include('teacher.teacherNavbar')
 
-    
+    @yield('teacherDashboard')
     
 
     

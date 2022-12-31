@@ -37,6 +37,12 @@
     @yield('noticeInput')
     @yield('class')
     @yield('schedule')
+    @yield('teacherApplications')
+    @yield('teacherApplicationForm')
+    @yield('teacherApplicationsDetails')
+    @yield('teacherApplicationApprove')
+    @yield('tutionFee')
+    @yield('teacherSalary')
     
 
     

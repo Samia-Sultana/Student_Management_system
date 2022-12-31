@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\formlabel;
+use App\Models\Teacherapplicationform;
 use Illuminate\Http\Request;
 
 class FormlabelController extends Controller
@@ -24,6 +25,23 @@ class FormlabelController extends Controller
         ]);
 
         return redirect()->route('studentFormsetupView');
+    }
+
+    public function view(){
+        $formfields = Teacherapplicationform::all();
+        return view('admin.adminSection.teacher_applicationform_setup',compact('formfields'));
+
+    }
+    public function make(Request $request){
+        $relatedField = $request->relatedField;
+
+        Teacherapplicationform::where('relatedField', $relatedField)->update([
+
+            'lebelName' => $request->labelName,
+        ]); 
+
+        return redirect()->route('teacherFormsetupView');
+        
     }
 
     

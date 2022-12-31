@@ -51,9 +51,36 @@
                                 </li><!-- .nk-menu-item -->
 
                                 <li class="nk-menu-item">
+                                    <a href="{{ route('teacherFormsetupView') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                                        <span class="nk-menu-text">Teacher Aplication Form Setup</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item">
                                     <a href="{{ route('allApplications') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
                                         <span class="nk-menu-text">Online Aplications</span><span class="nk-menu-badge">new</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('teacherApplications') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                                        <span class="nk-menu-text">Teacher Aplications</span><span class="nk-menu-badge">new</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('tutionFee') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                                        <span class="nk-menu-text">Tution fee</span><span class="nk-menu-badge">new</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('teacherSalary') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                                        <span class="nk-menu-text">Teacher salary</span><span class="nk-menu-badge">new</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
 

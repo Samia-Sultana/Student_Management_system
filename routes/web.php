@@ -14,8 +14,14 @@ use App\Http\Controllers\ClassinfoController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SceduleController;
+use App\Http\Controllers\TeacherApplicationController;
+use App\Http\Controllers\TutionfeeController;
 use App\Http\Controllers\VideoController;
+use App\Models\Teacherapplicationform;
+use App\Models\TeacherApplications;
+use App\Models\Tutionfee;
 
 // General Pages
 // home
@@ -60,12 +66,20 @@ Route::get('/extra_curricular_activities', function () {
 Route::get('/online_admission', [OnlineadmissionController::class, 'index'])->name('online_admission');
 Route::post('/online_admission', [OnlineadmissionController::class, 'create'])->name('online_admission_form');
 
-// notices
-Route::get('/notices',[NoticeController::class,'allNotice'])->middleware(['auth:admin', 'verified'])->name('allNotice');
 
-Route::get('/notice/{id}/view',[NoticeController::class,'viewNotice'])->middleware(['auth:admin', 'verified'])->name('viewNotice');
+
+
+// notices
+Route::get('/notices',[NoticeController::class,'allNotice'])->name('allNotice');
+
+Route::get('/notice/{id}/view',[NoticeController::class,'viewNotice'])->name('viewNotice');
 // blogs
-Route::get('academic/blog/{id}',[BlogController::class,'viewBlog'])->middleware(['auth:admin', 'verified'])->name('viewBlog');
+Route::get('academic/blog/{id}',[BlogController::class,'viewBlog'])->name('viewBlog');
+
+//career
+Route::get('/career',[TeacherApplicationController::class,'index'])->name('career');
+Route::post('/career', [TeacherApplicationController::class, 'create'])->name('teacher_application_form');
+
 
 
 
@@ -100,6 +114,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+
+
+
+
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
@@ -111,6 +129,11 @@ Route::prefix('admin')->group(function(){
 Route::get('/student_applicationForm', [FormlabelController::class, 'show'])->middleware(['auth:admin', 'verified'])->name('studentFormsetupView');
 // Student Form Setup Submit
 Route::post('/student_applicationForm', [FormlabelController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('studentFormsetupSubmit');
+
+// Teacher Form Setup_View
+Route::get('/teacher_applicationForm', [FormlabelController::class, 'view'])->middleware(['auth:admin', 'verified'])->name('teacherFormsetupView');
+// Student Form Setup Submit
+Route::post('/teacher_applicationForm', [FormlabelController::class, 'make'])->middleware(['auth:admin', 'verified'])->name('teacherFormsetupSubmit');
 
 // Online Applications
 Route::get('/online_applications', [OnlineadmissionController::class, 'show'])->middleware(['auth:admin', 'verified'])->name('allApplications');
@@ -158,16 +181,43 @@ Route::post('/online_applications_approve/{id}', [OnlineadmissionController::cla
     Route::get('/scedule',[SceduleController::class,'index'])->middleware(['auth:admin', 'verified'])->name('scedule');
     Route::post('/scedule',[SceduleController::class,'store'])->middleware(['auth:admin', 'verified'])->name('createScedule');
 
+
+    // Teacher applications
+Route::get('/teacher/application/all', [TeacherApplicationController::class, 'show'])->middleware(['auth:admin', 'verified'])->name('teacherApplications');
+Route::get('/teacher/application/details/{id}', [TeacherApplicationController::class, 'applicationDetail'])->middleware(['auth:admin', 'verified']);
+Route::get('/teacher/application/approve/{id}', [TeacherApplicationController::class, 'approveView'])->middleware(['auth:admin', 'verified']);
+Route::post('/teacher/application/approve/{id}', [TeacherApplicationController::class, 'approveInput'])->middleware(['auth:admin', 'verified'])->name('teacher_application_approve');
+
+
+//Tution fee and salary
+
+Route::get('/tution/fee', [TutionfeeController::class, 'index'])->middleware(['auth:admin', 'verified'])->name('tutionFee');
+Route::post('/tution/fee', [TutionfeeController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('tutionFeeGenerate');
+Route::get('/teacher/salary', [SalaryController::class, 'index'])->middleware(['auth:admin', 'verified'])->name('teacherSalary');
+Route::post('/teacher/salary', [SalaryController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('teacherSalaryGenerate');
+
+
+
     //Route::post('/class/info',[ClassinfoController::class,'addClassinfo'])->middleware(['auth:admin', 'verified'])->name('addClassinfo');
 
-
-
-
-
-
-
-   
 
 });
 
 require __DIR__.'/adminauth.php';
+
+
+
+Route::get('/teacher/dashboard', function () {
+    return view('teacher.dashboard');
+})->middleware(['auth:teacher', 'verified'])->name('teacher.dashboard');
+
+
+// Admin view
+Route::prefix('teacher')->group(function(){
+    Route::get('/viewScedule',[SceduleController::class,'show'])->middleware(['auth:teacher', 'verified'])->name('viewScedule');
+
+
+});
+
+ 
+require __DIR__.'/teacherauth.php';

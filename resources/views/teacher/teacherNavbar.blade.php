@@ -71,8 +71,8 @@
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
-                                                    <div class="user-status">Admin Name</div>
-                                                    <div class="user-name dropdown-indicator">{{ Auth::guard('admin')->user()->name }}</div>
+                                                    <div class="user-status">Teacher name</div>
+                                                    <div class="user-name dropdown-indicator">{{ Auth::guard('teacher')->user()->name }}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -83,8 +83,8 @@
                                                         <span>AD</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">{{ Auth::guard('admin')->user()->name }}</span>
-                                                        <span class="sub-text">({{ Auth::guard('admin')->user()->email }})</span>
+                                                        <span class="lead-text">{{ Auth::guard('teacher')->user()->name }}</span>
+                                                        <span class="sub-text">({{ Auth::guard('teacher')->user()->teacherId }})</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,7 +99,7 @@
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
 
-                                                    <form method="POST" action="{{ route('admin.logout') }}">
+                                                    <form method="POST" action="{{ route('teacher.logout') }}">
                                                     @csrf      
                                                     <button type="submit" class="btn btn-white btn-dim btn-outline-danger">Logout</button>
                                                     
