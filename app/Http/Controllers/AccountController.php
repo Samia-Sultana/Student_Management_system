@@ -14,7 +14,8 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        $account = array();
+        return view('accountStatus', compact('account'));
     }
 
     /**
@@ -44,9 +45,12 @@ class AccountController extends Controller
      * @param  \App\Models\Account  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(Account $account)
+    public function show(Request $request)
     {
-        //
+       $year = $request->get('year');
+       $month = $request->get('month');
+        $account = Account::where('year',$year)->where('month',$month)->get();
+        return view('accountStatus', compact('account'));
     }
 
     /**

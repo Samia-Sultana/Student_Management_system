@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OnlineadmissionController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SceduleController;
 use App\Http\Controllers\TeacherApplicationController;
 use App\Http\Controllers\TutionfeeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Models\Teacherapplicationform;
 use App\Models\TeacherApplications;
@@ -107,9 +109,7 @@ Route::get('/contact', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -195,6 +195,12 @@ Route::get('/tution/fee', [TutionfeeController::class, 'index'])->middleware(['a
 Route::post('/tution/fee', [TutionfeeController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('tutionFeeGenerate');
 Route::get('/teacher/salary', [SalaryController::class, 'index'])->middleware(['auth:admin', 'verified'])->name('teacherSalary');
 Route::post('/teacher/salary', [SalaryController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('teacherSalaryGenerate');
+Route::post('/status/tution', [TutionfeeController::class, 'updateTutionStatus'])->middleware(['auth:admin', 'verified'])->name('updateTutionStatus');
+Route::post('/salary/teacher', [SalaryController::class, 'updateSalaryStatus'])->middleware(['auth:admin', 'verified'])->name('updateSalaryStatus');
+Route::get('/account/status',[AccountController::class, 'index'])->middleware(['auth:admin','verified'])->name('accountStatus');
+Route::post('/account/status', [AccountController::class, 'show'])->middleware(['auth:admin', 'verified'])->name('accountStatusPost');
+
+
 
 
 
@@ -215,6 +221,9 @@ Route::get('/teacher/dashboard', function () {
 // Admin view
 Route::prefix('teacher')->group(function(){
     Route::get('/viewScedule',[SceduleController::class,'show'])->middleware(['auth:teacher', 'verified'])->name('viewScedule');
+    Route::post('/viewScedule',[SceduleController::class,'classRoutine'])->middleware(['auth:teacher', 'verified'])->name('classRoutine');
+    Route::get('/view/salary',[SalaryController::class,'salary'])->middleware(['auth:teacher', 'verified'])->name('salary');
+
 
 
 });

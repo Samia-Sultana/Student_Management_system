@@ -54,6 +54,7 @@
 @yield('noticeView')
 @yield('gallery')
 @yield('blogView')
+@yield('userDashboard')
 @yield('teacherApplicationForm')
 
 

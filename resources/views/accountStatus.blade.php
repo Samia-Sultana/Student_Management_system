@@ -1,5 +1,5 @@
 @extends('masterAdmin')
-@section('teacherSalary')
+@section('accountStatus')
 
 <!-- content @s -->
 <div class="nk-content ">
@@ -16,18 +16,11 @@
 
                         <div class="card card-bordered">
                             <div class="card-inner">
-                                <div class="card-head">
-                                    <h5 class="card-title">Salary</h5>
-                                </div>
-
-                                <form class="gy-3" enctype="multipart/form-data" method="POST" action="{{route('teacherSalaryGenerate')}}">
-                                    @csrf
-
-                                    <div class="row g-3 align-center">
-                                        <div class="col-lg-7">
-                                            <div class="form-group">
-                                                <div class="form-control-wrap">
-                                                    <select name="year" id="year">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <form action="{{route('accountStatusPost')}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <select name="year" id="year">
                                                         <option value="2023">2023</option>
                                                         <option value="2024">2024</option>
                                                         <option value="2025">2025</option>
@@ -48,17 +41,8 @@
                                                         <option value="2040">2040</option>
                                                         <option value="2041">2041</option>
                                                         <option value="2042">2042</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-3 align-center">
-                                        <div class="col-lg-7">
-                                            <div class="form-group">
-                                                <div class="form-control-wrap">
-                                                    <select name="month" id="month">
+                                            </select>
+                                            <select name="month" id="month">
                                                         <option value="jan">January</option>
                                                         <option value="feb">February</option>
                                                         <option value="mar">March</option>
@@ -71,85 +55,66 @@
                                                         <option value="oct">October</option>
                                                         <option value="nov">November</option>
                                                         <option value="dec">December</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                
+                                            </select>
+                                            <button type="submit"> Submit</button>
+                                        </form>
                                     </div>
-                                    <div class="row g-3 align-center">
-                                        <div class="col-lg-7">
-                                            <div class="form-group">
-                                                <div class="form-control-wrap">
-                                                    <button type="submit">Generate Teacher salary</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     
-                                </form>
+                                </div>
+                            
 
                             </div>
 
                         </div><!-- card -->
                         <div class="card card-bordered">
                             <div class="card-inner">
-                                <div class="card-head">
-                                    <h5 class="card-title">All Tution fees</h5>
-                                </div>
-                                <div>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <!-- <th class="pro-thumbnail">Thumbnail</th>
-                                    <th class="pro-title">Product</th> -->
-                                                <th class="pro-id">Id</th>
-                                                <th class="pro-text">Teacher Id</th>
-                                                <th class="pro-image">Salary</th>
+                            <div class="row">
+                                <div class="col-lg-8 d-flex">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <th>Id</th>
                                                 <th>Year</th>
                                                 <th>Month</th>
+                                                <th>Tution Fees</th>
+                                                <th>Teacher Salaries</th>
+                                                <th>Staff Salaries</th>
+                                                <th>Electricity</th>
+                                                <th>Water</th>
                                                 
-                                                <th class="pro-status">status</th>
-                                                <th>Pay</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if($allSalaries)
-                                            @foreach($allSalaries as $salary)
-                                            <tr>
-                                                <td id="salary_id">{{$salary->id}}</td>
-                                                <td >{{$salary->teacherId}}</td>
-                                                <td id="salary_amount">{{$salary->salary}}</td>
-                                                <td id="salary_year">{{$salary->year}}</td>
-                                                <td id="salary_month">{{$salary->month}}</td>
+                                                
+                                                <th>Balance</th>
+                                            </thead>
+                                            <tbody>
+                                                @if($account)
+                                                <tr>
+                                                <td>{{$account[0]->id}}</td>
+                                                <td>{{$account[0]->year}}</td>
+                                                <td>{{$account[0]->month}}</td>
+                                                <td>{{$account[0]->total_tution_fees}}</td>
+                                                <td>{{$account[0]->total_salaries}}</td>
+                                                <td>{{$account[0]->staff_salaries}}</td>
                                                
-                                                <td>
-                                                    
-                                                        <select name="status" id="status" class="status">
-                                                            
-                                                            <option data-display="{{$salary->status}}">{{$salary->status}}</option>
-                                                            <option value="pending">pending</option>
-                                                            <option value="paid">paid</option>
-                                                        </select>
-                                                    
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success">pay now</button>
-                                                </td>
-
-                                            </tr>
-
+                                                <td>{{$account[0]->electricity_bill}}</td>
+                                                <td>{{$account[0]->water_bill}}</td>
+                                                <td>{{$account[0]->total_tution_fees - $account[0]->total_salaries}}</td>
                                                 
+                                                </tr>
+                                                @endif
+                                            </tbody>
 
-                                            @endforeach
-                                            @endif
-
+                                        </table>
+                                        <div class="mx-4">
+                                        <button class="btn btn-success ">Download</button>
+                                        </div>
+                                       
+                                    </div>
                                 </div>
-                            </div>
 
+
+</div>
                         </div>
-                        
+
 
                     </div><!-- .nk-block -->
 
@@ -158,6 +123,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- content @e -->
 <!----Jquery----->
 <script src="{{ asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
@@ -175,12 +142,9 @@
 <script type="text/Javascript">
     $(".status").on("change", function() {
         var $select = $(this);
-        var id = $select.parent().siblings("td#salary_id").text();
-        var amount = $select.parent().siblings("td#salary_amount").text();
-        var year = $select.parent().siblings("td#salary_year").text();
-        var month = $select.parent().siblings("td#salary_month").text();
+        var id = $select.parent().prev().find("input#slider_id").val();
         var status = $select.val();
-        console.log(id,status,amount,year,month);
+        console.log(id,status);
         $.ajaxSetup({
        headers: {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -189,10 +153,10 @@
 
    $.ajax({
             type:'POST',
-            url:"{{ route('updateSalaryStatus') }}",
-            data: {id:id,status:status,amount:amount,year:year,month:month},
+            url:"{{ route('updateSliderStatus') }}",
+            data: {id:id,status:status},
             success:function(data){
-                console.log(data.account);
+                console.log('hiiiiiiiiiiiiiiiiii');
           }
        });
         

@@ -6,6 +6,7 @@ use App\Models\Classinfo;
 use App\Models\Scedule;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SceduleController extends Controller
 {
@@ -65,7 +66,9 @@ class SceduleController extends Controller
      */
     public function show(Scedule $scedule)
     {
-        //
+        $id = Auth::guard('teacher')->user()->id;
+        $schedules = Scedule::find($id);
+        return view('scheduleView',compact('schedules'));
     }
 
     /**
@@ -76,7 +79,7 @@ class SceduleController extends Controller
      */
     public function edit(Scedule $scedule)
     {
-        //
+       
     }
 
     /**
@@ -100,5 +103,12 @@ class SceduleController extends Controller
     public function destroy(Scedule $scedule)
     {
         //
+    }
+    public function classRoutine(Request $request){
+        
+        $id = Auth::guard('teacher')->user()->id;
+        $schedules = Scedule::where('teacher_id',$id)->where('day',$request->input('day'))->get();
+        return view('scheduleView',compact('schedules'));
+
     }
 }

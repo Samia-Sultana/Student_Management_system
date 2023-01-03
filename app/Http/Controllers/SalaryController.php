@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Salary;
 use App\Models\Teacherapplications;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SalaryController extends Controller
 {
@@ -96,5 +99,35 @@ class SalaryController extends Controller
     public function destroy(Salary $salary)
     {
         //
+    }
+    public function updateSalaryStatus(Request $request){
+        $id = $request->get('id');
+        $status = $request->get('status');
+        $amount = intval(str_replace(',','',$request->get('amount')));
+        $year = $request->get('year');
+        $month = $request->get('month');
+        
+        DB::table('salaries')->where('id',"=",$id)->update([
+            'status' => $status
+        ]);
+        if($status == "paid"){
+            $account = Account::where('year',"=",$year)->where('month',"=",$month)->get();
+            $total = $account[0]->total_salaries;
+            $total_salaries = $total + $amount;
+            Account::where('year',"=",$year)->where('month',"=",$month)->update([
+                'total_salaries' => $total_salaries,
+            ]);
+            return response()->json(['account'=>json_encode($total_salaries)]);
+            
+         }
+        return response()->json(['ji'=>'hiiiiiiiiiiiiiiiiiiii']);
+
+    }
+    public function salary(){
+        $id = Auth::guard('teacher')->user()->id;
+        $teacherId = 'tcr'.$id;
+        $salaries = Salary::where('teacherId',$teacherId)->get();
+        
+        return view('salaryview', compact('salaries'));
     }
 }

@@ -29,7 +29,13 @@
                                 
                                 <li class="nk-menu-item">
                                     <a href="{{ route('viewScedule') }}" class="nk-menu-link">
-                                        <span class="nk-menu-text">Scedule</span>
+                                        <span class="nk-menu-text">Schedule</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('salary') }}" class="nk-menu-link">
+                                        <span class="nk-menu-text">Salary</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
 

@@ -43,6 +43,7 @@
     @yield('teacherApplicationApprove')
     @yield('tutionFee')
     @yield('teacherSalary')
+    @yield('accountStatus')
     
 
     

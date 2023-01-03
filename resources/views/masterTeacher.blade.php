@@ -24,6 +24,8 @@
 @include('teacher.teacherNavbar')
 
     @yield('teacherDashboard')
+    @yield('scheduleView')
+    @yield('salaryView')
     
 
     

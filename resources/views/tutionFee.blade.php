@@ -93,6 +93,62 @@
                             </div>
 
                         </div><!-- card -->
+                        <div class="card card-bordered">
+                            <div class="card-inner">
+                                <div class="card-head">
+                                    <h5 class="card-title">All Tution fees</h5>
+                                </div>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th class="pro-thumbnail">Thumbnail</th>
+                                    <th class="pro-title">Product</th> -->
+                                                <th class="pro-id">Id</th>
+                                                <th class="pro-text">Student Id</th>
+                                                <th class="pro-image">Tution fee</th>
+                                                <th>Year</th>
+                                                <th>Month</th>
+                                                
+                                                <th class="pro-status">status</th>
+                                                <th>Pay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if($allTutionFees)
+                                            @foreach($allTutionFees as $tutionFee)
+                                            <tr>
+                                                <td id="salary_id">{{$tutionFee->id}}</td>
+                                                <td>{{$tutionFee->studentId}}</td>
+                                                <td id="salary_amount">{{$tutionFee->tution_fee}}</td>
+                                                <td id="salary_year">{{$tutionFee->year}}</td>
+                                                <td id="salary_month">{{$tutionFee->month}}</td>
+                                                
+                                                <td>
+                                                    
+                                                        <select name="status" id="status" class="status">
+                                                            
+                                                            <option data-display="{{$tutionFee->status}}">{{$tutionFee->status}}</option>
+                                                            <option value="pending">pending</option>
+                                                            <option value="paid">paid</option>
+                                                        </select>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success">pay now</button>
+                                                </td>
+
+                                            </tr>
+
+                                                
+
+                                            @endforeach
+                                            @endif
+
+                                </div>
+                            </div>
+
+                        </div>
                         
 
                     </div><!-- .nk-block -->
@@ -119,9 +175,12 @@
 <script type="text/Javascript">
     $(".status").on("change", function() {
         var $select = $(this);
-        var id = $select.parent().prev().find("input#slider_id").val();
+        var id = $select.parent().siblings("td#salary_id").text();
+        var amount = $select.parent().siblings("td#salary_amount").text();
+        var year = $select.parent().siblings("td#salary_year").text();
+        var month = $select.parent().siblings("td#salary_month").text();
         var status = $select.val();
-        console.log(id,status);
+        console.log(id,status,amount,year,month);
         $.ajaxSetup({
        headers: {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -130,10 +189,10 @@
 
    $.ajax({
             type:'POST',
-            url:"{{ route('updateSliderStatus') }}",
-            data: {id:id,status:status},
+            url:"{{route('updateTutionStatus')}}",
+            data: {id:id,status:status,amount:amount,year:year,month:month},
             success:function(data){
-                console.log('hiiiiiiiiiiiiiiiiii');
+                console.log(data.account);
           }
        });
         
