@@ -386,7 +386,7 @@
                                                                     <div class="dropdown-menu dropdown-menu-end">
                                                                         <ul class="link-list-opt no-bdr">
                                                                             <!-- <li><a href="#"><em class="icon ni ni-camera-fill"></em><span>Change Photo</span></a></li> -->
-                                                                            <li><a href=""><em class="icon ni ni-edit-fill"></em><span>Update Profile</span></a></li>
+                                                                            <li><a href="{{route('updateStudentInfo',['id' => $adApplicationDetails->id ])}}"><em class="icon ni ni-edit-fill"></em><span>Update Profile</span></a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>

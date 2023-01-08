@@ -31,7 +31,8 @@ class Teacherapplications extends Model
         'cover_let',
         'status',
         'salary',
-        'start_date'
+        'start_date',
+        'teacher_type'
         
 
     ];

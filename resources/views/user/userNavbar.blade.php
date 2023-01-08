@@ -83,7 +83,7 @@
                <!-- End Header Navigation -->
 
                <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="navbar-menu">
+               <div class="collapse navbar-collapse " id="navbar-menu">
                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                        
                        @php
@@ -110,7 +110,7 @@
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About</a>
                            <ul class="dropdown-menu">
-                               <li><a href="{{ route('honorable_teacher') }}">Our Honorable teachers</a></li>
+                               <li><a href="{{ route('ourTeam') }}">Our Honorable teachers</a></li>
                                <li><a href="{{ route('about') }}">About Us</a></li>
                                <li><a href="{{ route('aim') }}">Our Aim</a></li>
                                <li><a href="{{ route('management_message') }}">management message</a></li>
@@ -133,9 +133,7 @@
                        @endif
                        @endif
                        @endforeach
-                       <li>
-                   <a href="{{ route('career') }}">Career</a>
-                   </li>
+                       
 
                    </ul>
                    

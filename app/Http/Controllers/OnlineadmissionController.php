@@ -215,6 +215,7 @@ class OnlineadmissionController extends Controller
             'name' => $name,
             'userId' => $newUserId,
             'password' => Hash::make($newPassword),
+            'onlineadmissions_id' => $id,
 
         ]);
 
@@ -243,9 +244,9 @@ class OnlineadmissionController extends Controller
      * @param  \App\Models\Onlineadmission  $onlineadmission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Onlineadmission $onlineadmission)
+    public function update(Request $request, $id)
     {
-        //
+        return view('admin.adminSection.updateStudentInformation',compact('id'));
     }
 
     /**
@@ -257,5 +258,81 @@ class OnlineadmissionController extends Controller
     public function destroy(Onlineadmission $onlineadmission)
     {
         //
+    }
+    public function updateInfo(Request $request){
+
+        $id = $request->id;
+        $studentInfo = Onlineadmission::find($id);
+        $studentInfo['studentname_in_bangla'] = $request->studentname_in_bangla;
+        $studentInfo['studentname_in_english'] = $request->studentname_in_english;
+        $studentInfo['birthDate'] = $request->birthDate;
+        $studentInfo['ageYears'] = $request->ageYears;
+        $studentInfo['ageMonths'] = $request->ageMonths;
+
+        $studentInfo['birthReg'] = $request->birthReg;
+        $studentInfo['nationality'] = $request->nationality;
+        $studentInfo['bloodGroup'] = $request->bloodGroup;
+
+        $studentInfo['completed_class'] = $request->completed_class;
+        $studentInfo['pre_institution'] = $request->pre_institution;
+        $studentInfo['seeking_admission_class'] = $request->seeking_admission_class;
+        $studentInfo['admitted_class'] = $request->admitted_class;
+        $studentInfo['admitted_section'] = $request->admitted_section;
+        $studentInfo['admission_type'] = $request->admission_type;
+        $studentInfo['roll'] = $request->roll;
+
+        $studentInfo['siblingsName'] = $request->siblingsName;
+
+         $studentInfo['fathername_in_bangla'] = $request->fathername_in_bangla;
+         $studentInfo['fathername_in_english'] = $request->fathername_in_english;
+         $studentInfo['fatherOccupation'] = $request->fatherOccupation;
+         $studentInfo['father_edu_qua'] = $request->father_edu_qua;
+         $studentInfo['fatherNid'] = $request->fatherNid;
+
+         $studentInfo['mothername_in_bangla'] = $request->mothername_in_bangla;
+         $studentInfo['mothername_in_english'] = $request->mothername_in_english;
+         $studentInfo['motherOccupation']= $request->motherOccupation;
+         $studentInfo['mother_edu_qua'] = $request->mother_edu_qua;
+         $studentInfo['motherNid'] = $request->motherNid;
+
+         $studentInfo['monthlyIncome_parents_in_number'] = $request->monthlyIncome_parents_in_number;
+         $studentInfo['monthlyIncome_parents_in_words'] = $request->monthlyIncome_parents_in_words;
+         $studentInfo['phoneNumber_father'] = $request->phoneNumber_father;
+         $studentInfo['phoneNumber_mother'] = $request->phoneNumber_mother;
+         $studentInfo['emailID_father'] = $request->emailID_father;    
+         $studentInfo['emailID_mother'] = $request->emailID_mother;
+
+         $studentInfo['whatsappNumb'] = $request->whatsappNumb;
+         $studentInfo['emergencyNumb'] = $request->emergencyNumb;
+         $studentInfo['current_address']= $request->current_address;
+         $studentInfo['permanent_address'] = $request->permanent_address;    
+        
+         $studentInfo['transport'] = $request->transport;
+        
+         $studentInfo['field1'] = $request->field1;
+         $studentInfo['field2'] = $request->field2;
+         $studentInfo['field3'] = $request->field3;
+         if( $request->file('photo')){
+            $image = $request->file('photo');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(240,300)->save('upload/student_images/'.$name_gen);
+            $save_url = 'upload/student_images/'.$name_gen;
+            $studentInfo['photo'] = $save_url;
+    
+           }
+
+        $studentInfo->save();
+
+        
+
+     $notification = array(
+        'message' => 'Student Information Updated succesfully!',
+        'alert-type' => 'success'
+    );
+
+     // return redirect to same page
+    return redirect()->route('updateStudentInfo',['id'=>$id])->with($notification);
+
+
     }
 }

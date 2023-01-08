@@ -18,6 +18,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SceduleController;
 use App\Http\Controllers\TeacherApplicationController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TutionfeeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -82,6 +83,10 @@ Route::get('academic/blog/{id}',[BlogController::class,'viewBlog'])->name('viewB
 Route::get('/career',[TeacherApplicationController::class,'index'])->name('career');
 Route::post('/career', [TeacherApplicationController::class, 'create'])->name('teacher_application_form');
 
+//our team
+Route::get('/our-team',[TeacherController::class,'index'])->name('ourTeam');
+
+
 
 
 
@@ -130,13 +135,21 @@ Route::get('/student_applicationForm', [FormlabelController::class, 'show'])->mi
 // Student Form Setup Submit
 Route::post('/student_applicationForm', [FormlabelController::class, 'create'])->middleware(['auth:admin', 'verified'])->name('studentFormsetupSubmit');
 
+Route::post('/delete/student/form/field', [FormlabelController::class, 'destroyStudentFormField'])->middleware(['auth:admin', 'verified'])->name('deleteStudentFormField');
+
+
 // Teacher Form Setup_View
 Route::get('/teacher_applicationForm', [FormlabelController::class, 'view'])->middleware(['auth:admin', 'verified'])->name('teacherFormsetupView');
 // Student Form Setup Submit
 Route::post('/teacher_applicationForm', [FormlabelController::class, 'make'])->middleware(['auth:admin', 'verified'])->name('teacherFormsetupSubmit');
 
+Route::post('/delete/teacher/form/field', [FormlabelController::class, 'destroyTeacherFormField'])->middleware(['auth:admin', 'verified'])->name('deleteTeacherFormField');
+
+
 // Online Applications
 Route::get('/online_applications', [OnlineadmissionController::class, 'show'])->middleware(['auth:admin', 'verified'])->name('allApplications');
+Route::get('/update/student/info/{id}', [OnlineadmissionController::class, 'update'])->middleware(['auth:admin', 'verified'])->name('updateStudentInfo');
+Route::post('/update/student/info', [OnlineadmissionController::class, 'updateInfo'])->middleware(['auth:admin', 'verified'])->name('updateInfo');
 
 // Online Application details view
 Route::get('/online_applications/{id}', [OnlineadmissionController::class, 'applicationDetails'])->middleware(['auth:admin', 'verified']);
@@ -180,6 +193,13 @@ Route::post('/online_applications_approve/{id}', [OnlineadmissionController::cla
     Route::post('/class/info',[ClassinfoController::class,'addClassinfo'])->middleware(['auth:admin', 'verified'])->name('addClassinfo');
     Route::get('/scedule',[SceduleController::class,'index'])->middleware(['auth:admin', 'verified'])->name('scedule');
     Route::post('/scedule',[SceduleController::class,'store'])->middleware(['auth:admin', 'verified'])->name('createScedule');
+    Route::post('/update/scedule',[SceduleController::class,'update'])->middleware(['auth:admin', 'verified'])->name('updateScedule');
+    Route::post('/delete/blog',[BlogController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteBlog');
+    Route::post('/blog/update',[BlogController::class,'updateBlog'])->middleware(['auth:admin', 'verified'])->name('updateBlog');
+    Route::post('/notice/update',[NoticeController::class,'updateNotice'])->middleware(['auth:admin', 'verified'])->name('updateNotice');
+
+
+
 
 
     // Teacher applications

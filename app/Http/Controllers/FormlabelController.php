@@ -43,6 +43,44 @@ class FormlabelController extends Controller
         return redirect()->route('teacherFormsetupView');
         
     }
+    
+
+
+    public function destroyStudentFormField(Request $request){
+       
+        $fieldId = $request->field_id;
+       
+        formlabel::where('id', $fieldId)->update([
+
+            'labelName' => null,
+        ]);
+
+        return redirect()->route('studentFormsetupView');
+
+
+
+    }
+    public function destroyteacherFormField(Request $request){
+
+        $fieldId = $request->field_id;
+       
+        Teacherapplicationform::where('id', $fieldId)->update([
+
+            'lebelName' => null,
+        ]);
+
+        return redirect()->route('teacherFormsetupView');
+        
+
+    }
+
+    public function updateStudentForm(Request $request){
+
+    }
+    public function updateTeacherForm(Request $request){
+        
+    }
+
 
     
 }

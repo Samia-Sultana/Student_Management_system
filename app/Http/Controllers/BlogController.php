@@ -94,14 +94,25 @@ class BlogController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id = $request->input('logo_id');
+        $id = $request->input('blog_id');
         DB::table('blogs')->where('id',$id)->delete();
-        $blogs = Blog::all();
-        return view('blog',compact('blogs'));
+        return redirect()->route('blog');
     }
     public function viewBlog($id){
         $blog = Blog::where('blogcatagory_id', $id)->get();
         
         return view('blogView', compact('blog'));
+    }
+    public function updateBlog(Request $request){
+        $id = $request->input('id');
+        $title = $request->input('title');
+        $description = $request->input('editordata');
+
+        $blog = Blog::find($id);
+        $blog['title'] = $title;
+        $blog['description'] = $description;
+        $blog->save();
+        return response()->json(['success'=>'Blog updated successfully']);
+
     }
 }

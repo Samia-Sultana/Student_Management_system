@@ -90,8 +90,23 @@
                                                                     <input class="form-control" type="text" id="salary" name="salary" value="{{ $teacherInfo->salary }}" placeholder="{{ $teacherInfo->salary }}" required>
                                                                 </div>
                                                             </div>
+                                                        </div> 
+                                                </div>
+
+                                                <div class="row g-3 align-center">
+                                                <div class="col-lg-5">
+                                                            <div class="form-group">
+                                                                <label class="teacher_type" for="site-name"> Teacher Type</label>
+                                                                <span class="form-note">Specify the class you want to.</span>
+                                                            </div>
                                                         </div>
-                                                       
+                                                        <div class="col-lg-7">
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap">
+                                                                    <input class="form-control" type="text" id="teacher_type" name="teacher_type" value="{{ $teacherInfo->type }}" placeholder="{{ $teacherInfo->type }}" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 </div>
 
                                                     

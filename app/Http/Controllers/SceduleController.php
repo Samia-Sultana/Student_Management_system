@@ -89,9 +89,22 @@ class SceduleController extends Controller
      * @param  \App\Models\Scedule  $scedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Scedule $scedule)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $schedule = Scedule::find($id);
+        $schedule->update([
+        'class' => $request->class,
+        'section'=> $request->section,
+        'day' => $request->day,
+        'subject' => $request->subject,
+        'start_time' => $request->start,
+        'end_time' => $request->end,
+        'teacher_id' => $request->teacher
+
+        ]);
+        return response()->json(['success'=>'Schedule updated']);
+        
     }
 
     /**

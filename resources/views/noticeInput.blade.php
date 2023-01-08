@@ -73,6 +73,7 @@
                                                 <th class="pro-id">Id</th>
                                                 <th class="pro-name">Name</th>
                                                 <th class="pro-remove">Delete</th>
+                                                <th>Update</th>
                                                 
                                             </tr>
                                         </thead>
@@ -90,7 +91,58 @@
                                                         <button type="submit" class="btn btn-danger btn-delete-notice">Delete</button>
                                                     </form>
                                                 </td>
-                                                
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$notice->id}}" >
+                                                        Update
+                                                    </button>
+                                                    <div class="modal fade" id="{{'update_product_' . $notice->id}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="update_product_lebel">Update Product</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body ">
+                                                                    <form action="" class="" enctype="multipart/form-data">
+                                                                        @csrf
+
+                                                                        <div class="row">
+                                                                            <div class="">
+                                                                                <input type="hidden" id="update_blogId" name="update_blogId" value="{{$notice->id}}">
+
+                                                                                <label for="update_title">Title</label><br>
+                                                                                <input type="text" id="update_title" name="update_title" value="{{$notice->title}}" class="col-12"><br><br>
+
+                                                                            </div>
+                                                                            <br>
+                                                                            
+                                                                        </div>
+                                                                        <div class="row">
+                                                                       
+                                                                        </div>
+                                                                        <div class="row">
+                                                                        <textarea class="form-control update_description" type="text" id="update_description" name="update_description"  >  {{$notice->description}} </textarea>
+                                                                        </div>
+
+
+
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary btn-update-product" >Save changes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal -->
+
+                                                </td>
                                             </tr>
 
                                             @endforeach
@@ -124,11 +176,50 @@
 <script src="{{asset('adminFrontend/assets/js/ckeditor/ckeditor.js')}}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<script>
-    CKEDITOR.replace('notice');
+<!--------------modal scripts------------->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/Javascript">
+
+    $(".btn-update-product").on("click", function() {
+         
+    var $button = $(this);
+    var id = $button.parent().prev().find("input#update_blogId").val();
+    var title =$button.parent().prev().find("input#update_title").val();
+    var editordata = $button.parent().prev().find("textarea#update_description").val();
+    console.log(id,title,editordata);
+
+    var fd = new FormData();
+    fd.append('id',id);
+    fd.append('title',title);
+    fd.append('editordata',editordata);
+    
+   
+ 
+$.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       }
+   });
+
+   $.ajax({
+            type:'POST',
+            url:"{{ route('updateNotice') }}",
+            data: fd,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success:function(data){
+                toastr.success(data.success);
+          }
+       });
+  
+    });
+
+
 </script>
-
-
 
 
 @endsection

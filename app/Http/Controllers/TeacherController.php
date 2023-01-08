@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\Teacherapplications;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -14,7 +15,14 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        
+        $principal = Teacherapplications::where('designation',"=",'principal')->where('status',"=",1)->limit(1)->get();
+        $quranic_female = Teacherapplications::where('teacher_type',"=",'quranic')->where('gender',"=",'female')->where('status',"=",1)->limit(4)->get();
+        $quranic_male = Teacherapplications::where('teacher_type',"=",'quranic')->where('gender',"=",'male')->where('status',"=",1)->limit(4)->get();
+        $academic_male = Teacherapplications::where('teacher_type',"=",'academic')->where('gender',"=",'female')->where('status',"=",1)->limit(4)->get();
+        $academic_female = Teacherapplications::where('teacher_type',"=",'academic')->where('gender',"=",'male')->where('status',"=",1)->limit(4)->get();
+        $assistantTeachers = Teacherapplications::where('designation',"=",'Assis. Academic Teacher')->limit(1)->get();
+     
+        return view('our_team', compact('principal','quranic_female','quranic_male','academic_male','academic_female','assistantTeachers'));
     }
 
     /**

@@ -103,4 +103,18 @@ class NoticeController extends Controller
         $notice = Notice::find($id);
         return view ('noticeView', compact('notice'));
     }
+
+    public function updateNotice(Request $request){
+        
+        $id = $request->input('id');
+        $title = $request->input('title');
+        $description = $request->input('editordata');
+
+        $blog = Notice::find($id);
+        $blog['title'] = $title;
+        $blog['description'] = $description;
+        $blog->save();
+        return response()->json(['success'=>'Notice updated successfully']);
+
+    }
 }

@@ -360,7 +360,7 @@
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1 text-right">
-                        <a class="btn btn-md btn-dark border" href="honorable_teacher.html">View All <i class="fas fa-plus"></i></a>
+                        <a class="btn btn-md btn-dark border" href="{{route('ourTeam')}}">View All <i class="fas fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -368,11 +368,13 @@
         <div class="container">
             <div class="advisor-items text-center">
                 <div class="row">
+                    <?php $teachers = App\Models\Teacherapplications::where('teacher_type','senior')->limit(4)->get(); ?>
+                    @foreach($teachers as $teacher)
                     <!-- Single Item -->
                     <div class="single-item col-lg-3 col-md-6">
                         <div class="item">
                             <div class="thumb">
-                                <img src="{{ asset('userFrontend/assets/img/teacher/female-teacher.png')}}" alt="teacher">
+                                <img src="{{ url('upload/teacher_images/'.$teacher->photo) }}" alt="teacher">
                                 <ul>
                                     <li class="facebook">
                                         <a href="#">
@@ -393,102 +395,13 @@
                             </div>
                             <div class="info">
                                 <h4><a href="teacher-single.html">Lorem Ipsum</a></h4>
-                                <span>Assis. Academic Teacher</span>
+                                <span>{{$teacher->designation}}</span>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('userFrontend/assets/img/teacher/male-teacher.png')}}" alt="teacher">
-                                <ul>
-                                    <li class="facebook">
-                                        <a href="#">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li class="twitter">
-                                        <a href="#">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="linkedin">
-                                        <a href="#">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="info">
-                                <h4><a href="advisor-single.html">Lorem Ipsum</a></h4>
-                                <span>Coordinator</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('userFrontend/assets/img/teacher/female-teacher.png')}}" alt="teacher">
-                                <ul>
-                                    <li class="facebook">
-                                        <a href="#">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li class="twitter">
-                                        <a href="#">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="linkedin">
-                                        <a href="#">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="info">
-                                <h4><a href="teacher-single.html">Lorem Ipsum</a></h4>
-                                <span>Coordinator</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('userFrontend/assets/img/teacher/male-teacher.png')}}" alt="teacher">
-                                <ul>
-                                    <li class="facebook">
-                                        <a href="#">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li class="twitter">
-                                        <a href="#">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="linkedin">
-                                        <a href="#">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="info">
-                                <h4><a href="advisor-single.html">Lorem Ipsum</a></h4>
-                                <span>	
-                                    Assis. Academic Teacher </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
+                    @endforeach
+                    
                 </div>
             </div>
         </div>

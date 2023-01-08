@@ -1,4 +1,3 @@
-                
 <body class="nk-body bg-lighter npc-general has-sidebar ">
     <div class="nk-app-root">
         <!-- main @s -->
@@ -11,22 +10,22 @@
                         <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                     <div class="nk-sidebar-brand">
-                        
-                            <!-- <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+
+                        <!-- <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
                             <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> -->
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
                 <div class="nk-sidebar-element nk-sidebar-body">
                     <div class="nk-sidebar-content">
-                        <div class="nk-sidebar-menu" data-simplebar>
+                        <div class="nk-sidebar-menu" data-simplebar style="overflow-y:scroll;">
                             <ul class="nk-menu">
                                 <li class="nk-menu-heading">
 
                                     <h6 class="overline-title text-primary-alt">Use-Case Preview</h6>
 
                                 </li><!-- .nk-menu-item -->
-                                
+
 
                                 <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
@@ -93,22 +92,7 @@
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Dashboards</h6>
                                 </li><!-- .nk-menu-item -->
-                                
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Projects</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
-                                        </li>
-                                        
-                                    </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
+
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="{{ route('logo') }}" class="nk-menu-link">
@@ -136,22 +120,30 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
 
-                                <li class="nk-menu-item has-sub">
+                                <!----------  <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Blog</span>
                                     </a>
                                     <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('catagory')}}" class="nk-menu-link"><span class="nk-menu-text">Catagory</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('blog')}}" class="nk-menu-link"><span class="nk-menu-text">Blog</span></a>
-                                        </li>
                                         
-                                    </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
-                                
+                                        
+                                    </ul>
+                                </li> -->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{route('catagory')}}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Catagory</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="{{route('blog')}}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Blog</span>
+                                    </a>
+                                </li>
+
 
                                 <li class="nk-menu-item">
                                     <a href="{{ route('notice') }}" class="nk-menu-link">
@@ -160,7 +152,7 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
 
-                                <li class="nk-menu-item has-sub">
+                                <!--   <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Gallery</span>
@@ -173,25 +165,44 @@
                                             <a href="#" class="nk-menu-link"><span class="nk-menu-text">Video</span></a>
                                         </li>
                                         
-                                    </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
+                                    </ul>
+                                </li>-->
 
-                                <li class="nk-menu-item has-sub">
+                                <li class="nk-menu-item">
+                                    <a href="{{route('photos')}}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Photo</span></a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Video</span></a>
+                                </li>
+
+                                <!--- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Class Routine</span>
                                     </a>
                                     <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('classInfo')}}" class="nk-menu-link"><span class="nk-menu-text">Class</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('scedule')}}" class="nk-menu-link"><span class="nk-menu-text">Schedule</span></a>
-                                        </li>
                                         
-                                    </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
-                                
+                                        
+                                    </ul>
+                                </li>-->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{route('classInfo')}}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Class</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="{{route('scedule')}}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Schedule</span>
+                                    </a>
+                                </li>
+
 
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->
@@ -217,10 +228,21 @@
                                     <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> -->
                                 </a>
                             </div><!-- .nk-header-brand -->
-                            
+
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+
+                                    <form method="POST" action="{{ route('admin.logout') }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-white btn-dim btn-outline-danger">Logout</button>
+
+                                    </form>
+                                </ul>
+                            </div>
+
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                    
+
                                     <li class="dropdown user-dropdown">
                                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                             <div class="user-toggle">
@@ -257,15 +279,15 @@
                                                 <ul class="link-list">
 
                                                     <form method="POST" action="{{ route('admin.logout') }}">
-                                                    @csrf      
-                                                    <button type="submit" class="btn btn-white btn-dim btn-outline-danger">Logout</button>
-                                                    
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-white btn-dim btn-outline-danger">Logout</button>
+
                                                     </form>
                                                 </ul>
                                             </div>
                                         </div>
                                     </li><!-- .dropdown -->
-                                    
+
                                 </ul><!-- .nk-quick-nav -->
                             </div><!-- .nk-header-tools -->
                         </div><!-- .nk-header-wrap -->
@@ -274,5 +296,3 @@
                 <!-- main header @e -->
 
                 <!----------------------------------------------- Body Part Start ---------------------------------------------->
-
-                

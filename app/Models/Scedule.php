@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Scedule extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'class',
+        'section',
+        'teacher_id',
+        'subject',
+        'start_time',
+        'end_time',
+        'day'
+    ];
+    
 }

@@ -20,8 +20,15 @@ class TeacherApplicationController extends Controller
         //  Image name genarate, resize and save in a folder
         $image = $request->file('photo');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(240,300)->save('upload/teacher_images/'.$name_gen);
+        Image::make($image)->save('upload/teacher_images/'.$name_gen);
         $save_url = 'upload/teacher_images/'.$name_gen;
+
+        $cv = $request->file('cv');
+        $cvName = hexdec(uniqid()).'.'.$cv->getClientOriginalExtension();
+        $request->file('cv')->move(
+            base_path() . '/public/cvs', $cvName
+        );
+
 
         //  Insert others field in database
         Teacherapplications::create([
@@ -103,6 +110,7 @@ class TeacherApplicationController extends Controller
             'designation' => $request->designation,
             'salary' => $request->salary,
             'start_date' => $request->start_date,
+            'teacher_type' => $request->teacher_type,
             'status' => 1,
 
         ]);

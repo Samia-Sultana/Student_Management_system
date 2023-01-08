@@ -9,7 +9,9 @@ use App\Models\Notice;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\Socialmedia;
+use App\Models\Teacherapplications;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {

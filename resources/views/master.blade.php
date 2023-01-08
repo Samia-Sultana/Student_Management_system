@@ -28,7 +28,7 @@
     <link href="{{ asset('userFrontend/assets/css/owl.theme.default.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('userFrontend/assets/css/animate.css')}}" rel="stylesheet" />
     <link href="{{ asset('userFrontend/assets/css/bootsnav.css')}}" rel="stylesheet" />
-        <link href="{{ asset('userFrontend/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('userFrontend/assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('userFrontend/assets/css/style1.css')}}" rel="stylesheet">
     <link href="{{ asset('userFrontend/assets/css/responsive.css')}}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
@@ -56,6 +56,7 @@
 @yield('blogView')
 @yield('userDashboard')
 @yield('teacherApplicationForm')
+@yield('ourTeam')
 
 
 
